@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia - Bienvenida</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div id="bienvenida">
+    <h1>Bienvenido a la Trivia</h1>
+    <label for="nombre">Ingresa tu nombre:</label>
+    <input type="text" id="nombre" autocomplete="off"><br><br>
+    <label for="tipoPregunta">Elige el tipo de pregunta:</label>
+    <select id="tipoPregunta">
+        <option value="gramatica.html">Gramática</option>
+        <option value="vocabulario.html">Vocabulario</option>
+    </select><br><br>
+    <button onclick="iniciarTrivia()">Jugar</button>
+</div>
+
+<script>
+    function iniciarTrivia() {
+        var nombre = document.getElementById('nombre').value.trim();
+        if (nombre === "") {
+            alert("Por favor, ingresa tu nombre.");
+            return;
+        }
+        var tipoPregunta = document.getElementById('tipoPregunta').value;
+        window.location.href = tipoPregunta + "?nombre=" + encodeURIComponent(nombre);
+    }
+</script>
+</body>
+</html>
+

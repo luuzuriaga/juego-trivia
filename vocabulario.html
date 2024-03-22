@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia - Vocabulario</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div id="preguntas">
+    <h2>Hola <span id="nombreUsuario"></span>, ¿cómo se dice en inglés?</h2>
+
+    <div id="preguntasVocabulario">
+        <h3>Pregunta 1: ¿Cuál es tu nombre?</h3>
+        <div class="container-1">
+            <input type="radio" name="pregunta1" id="Whereisyourname?" value="Where is your name?">
+            <label for="Whereisyourname?">Where is your name?</label><br>
+            <input type="radio" name="pregunta1" id="Whenisyourname?" value="When is your name?">
+            <label for="Whenisyourname?">When is your name?</label><br>
+            <input type="radio" name="pregunta1" id="Whatsyourname?" value="What's your name?">
+            <label for="Whatsyourname?">What's your name?</label><br>
+        </div>
+
+        <h3>Pregunta 2: "Con permiso"</h3>
+        <div class="container-2">
+            <input type="radio" name="pregunta2" id="Pardonme" value="Pardon me">
+            <label for="Pardonme">Pardon me</label><br>
+            <input type="radio" name="pregunta2" id="Excuseme" value="Excuse me">
+            <label for="Excuseme">Excuse me</label><br>
+            <input type="radio" name="pregunta2" id="Sorry" value="Sorry">
+            <label for="Sorry">Sorry</label>
+        </div>
+
+        <h3>Pregunta 3: ¿Cómo se dice en inglés "Buenos días"?</h3>
+        <div class="container-3">
+            <input type="radio" name="pregunta3" id="Goodmorning" value="Good morning">
+            <label for="Goodmorning">Good morning</label><br>
+            <input type="radio" name="pregunta3" id="Goodnight" value="Good night">
+            <label for="Goodnight">Good night</label><br>
+            <input type="radio" name="pregunta3" id="Goodafternoon" value="Good afternoon">
+            <label for="Goodafternoon">Good afternoon</label>
+        </div>
+    </div>
+
+    <br>
+    <button onclick="verRespuestas()">Responder</button>
+    <button onclick="reiniciarTrivia()">Volver a jugar</button>
+    <div id="puntaje" style="display: none;">
+        <h3>Puntaje Total: <span id="puntajeTotal">0</span></h3>
+    </div>
+</div>
+
+<script>
+    var puntaje = 0;
+    var nombreUsuario = decodeURIComponent(window.location.search.replace("?nombre=", ""));
+
+    document.getElementById('nombreUsuario').textContent = nombreUsuario;
+
+    function verRespuestas() {
+        var respuestas = document.querySelectorAll('input[type="radio"]:checked');
+        if (respuestas.length !== 3) {
+            alert("Por favor, responde todas las preguntas.");
+            return;
+        }
+
+        // Verificación de respuestas
+        if (respuestas[0].value === "What's your name?") {
+            puntaje += 1;
+        }
+        if (respuestas[1].value === "Excuse me") {
+            puntaje += 1;
+        }
+        if (respuestas[2].value === "Good morning") {
+            puntaje += 1;
+        }
+
+        var mensajePuntaje = "Puntaje Total: " + puntaje;
+        document.getElementById('puntajeTotal').textContent = puntaje;
+        document.getElementById('puntaje').style.display = 'block';
+        alert(mensajePuntaje);
+    }
+
+    function reiniciarTrivia() {
+        window.location.href = "index.html";
+    }
+</script>
+</body>
+</html>

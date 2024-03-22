@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia - Gramática</title>
+    <link rel="stylesheet" href="estilos.css"></head>
+<body>
+<div id="preguntas">
+    <h2>Hola <span id="nombreUsuario"></span>, ¿cómo se dice en inglés?</h2>
+
+    <div id="preguntasGramatica">
+        <h3>Pregunta 1: ¿Cómo se dice "hola" en inglés?</h3>
+        <div class="container-1">
+            <input type="radio" name="pregunta1" id="Hello" value="Hello">
+            <label for="Hello">Hello</label><br>
+            <input type="radio" name="pregunta1" id="Goodbye" value="Goodbye">
+            <label for="Goodbye">Goodbye</label><br>
+            <input type="radio" name="pregunta1" id="Thankyou" value="Thank you">
+            <label for="Thankyou">Thank you</label><br>
+        </div>
+
+        <h3>Pregunta 2: ¿Cómo se dice "adiós" en inglés?</h3>
+        <div class="container-2">
+            <input type="radio" name="pregunta2" id="Goodbye1" value="Goodbye">
+            <label for="Goodbye1">Goodbye</label><br>
+            <input type="radio" name="pregunta2" id="Hello1" value="Hello">
+            <label for="Hello1">Hello</label><br>
+            <input type="radio" name="pregunta2" id="Thankyou1" value="Thank you">
+            <label for="Thankyou1">Thank you</label>
+        </div>
+
+        <h3>Pregunta 3: ¿Cómo se dice "por favor" en inglés?</h3>
+        <div class="container-3">
+            <input type="radio" name="pregunta3" id="Please" value="Please">
+            <label for="Please">Please</label><br>
+            <input type="radio" name="pregunta3" id="Sorry" value="Sorry">
+            <label for="Sorry">Sorry</label><br>
+            <input type="radio" name="pregunta3" id="Excuseme" value="Excuse me">
+            <label for="Excuseme">Excuse me</label>
+        </div>
+    </div>
+
+    <br>
+    <button onclick="verRespuestas()">Responder</button>
+    <button onclick="reiniciarTrivia()">Volver a jugar</button>
+    <div id="puntaje" style="display: none;">
+        <h3>Puntaje Total: <span id="puntajeTotal">0</span></h3>
+    </div>
+</div>
+
+<script>
+    var puntaje = 0;
+    var nombreUsuario = decodeURIComponent(window.location.search.replace("?nombre=", ""));
+
+    document.getElementById('nombreUsuario').textContent = nombreUsuario;
+
+    function verRespuestas() {
+        var respuestas = document.querySelectorAll('input[type="radio"]:checked');
+        if (respuestas.length !== 3) {
+            alert("Por favor, responde todas las preguntas.");
+            return;
+        }
+
+        // Verificación de respuestas
+        if (respuestas[0].value === "Hello") {
+            puntaje += 1;
+        }
+        if (respuestas[1].value === "Goodbye") {
+            puntaje += 1;
+        }
+        if (respuestas[2].value === "Please") {
+            puntaje += 1;
+        }
+
+        var mensajePuntaje = "Puntaje Total: " + puntaje;
+        document.getElementById('puntajeTotal').textContent = puntaje;
+        document.getElementById('puntaje').style.display = 'block';
+        alert(mensajePuntaje);
+    }
+
+    function reiniciarTrivia() {
+        window.location.href = "index.html";
+    }
+</script>
+</body>
+</html>
